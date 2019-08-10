@@ -1,5 +1,5 @@
 # List of problems along with unit tests
-
+[![Build status](https://ci.appveyor.com/api/projects/status/siusba2iladwrab8?svg=true)](https://ci.appveyor.com/project/hlsupe/programmingproblems)
 
 1. FizBuzz Test
 
