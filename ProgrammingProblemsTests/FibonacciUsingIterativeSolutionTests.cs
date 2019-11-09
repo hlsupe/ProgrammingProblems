@@ -1,59 +1,66 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
 
 namespace ProgrammingProblems.Tests
 {
-    [TestClass]
+	//TODO Use Xunit pattern to eliminate duplication of code in FibonacciUsingIterativeSolutionTests and FibonacciUsingRecursiveSolutionTests 
+	[TestClass]
     public class FibonacciUsingIterativeSolutionTests
     {
         [TestMethod]
         public void Returns0For1StFib()
         {
-            Assert.AreEqual(0, new FibonacciUsingIterativeSolution().GetFibonacciNumberAtIndex(1));
+	        FibonacciNumberAtIndex(1).Should().Be(0);
+        }
+
+        private static long FibonacciNumberAtIndex(int index){
+	         
+	        return new FibonacciUsingIterativeSolution().GetFibonacciNumberAtIndex(index);
         }
 
         [TestMethod]
         public void Returns1For2ndFib()
         {
-            Assert.AreEqual(1, new FibonacciUsingIterativeSolution().GetFibonacciNumberAtIndex(2));
-        }
+            FibonacciNumberAtIndex(2).Should().Be(1);
+		}
 
         [TestMethod]
         public void Returns1For3rdFib()
         {
-            Assert.AreEqual(1, new FibonacciUsingIterativeSolution().GetFibonacciNumberAtIndex(3));
-        }
+            FibonacciNumberAtIndex(3).Should().Be(1);
+		}
 
         [TestMethod]
         public void Returns2For4ThFib()
         {
-            Assert.AreEqual(2, new FibonacciUsingIterativeSolution().GetFibonacciNumberAtIndex(4));
-        }
+            FibonacciNumberAtIndex(4).Should().Be(2);
+		}
 
         [TestMethod]
         public void Returns3For5ThFib()
         {
-            Assert.AreEqual(3, new FibonacciUsingIterativeSolution().GetFibonacciNumberAtIndex(5));
-        }
+            FibonacciNumberAtIndex(5).Should().Be(3);
+		}
 
         [TestMethod]
         public void Returns5For6ThFib()
         {
-            Assert.AreEqual(5, new FibonacciUsingIterativeSolution().GetFibonacciNumberAtIndex(6));
-        }
+            FibonacciNumberAtIndex(6).Should().Be(5);
+		}
 
         [TestMethod]
         public void ThrowsInvalidOperationFor0ThFib()
         {
             Assert.ThrowsException<InvalidOperationException>(() =>
-                new FibonacciUsingIterativeSolution().GetFibonacciNumberAtIndex(0));
+				 FibonacciNumberAtIndex(0));
         }
 
         [TestMethod]
         public void ThrowsInvalidOperationForNegative1ThFib()
         {
             Assert.ThrowsException<InvalidOperationException>(() =>
-                new FibonacciUsingIterativeSolution().GetFibonacciNumberAtIndex(-1));
+	            FibonacciNumberAtIndex(-1));
         }
     }
 }

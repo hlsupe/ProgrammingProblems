@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
 
 namespace ProgrammingProblems.Tests
 {
@@ -16,8 +17,8 @@ namespace ProgrammingProblems.Tests
             sut.Swap(ref a, ref b);
 
             // Assert
-            Assert.AreEqual(30, a);
-            Assert.AreEqual(20, b);
+            a.Should().Be(30);
+            b.Should().Be(20);
         }
 
         [TestMethod]
@@ -31,8 +32,8 @@ namespace ProgrammingProblems.Tests
             sut.Swap(ref a, ref b);
 
             // Assert
-            Assert.AreEqual(-30, a);
-            Assert.AreEqual(-20, b);
+			a.Should().Be(-30);
+			b.Should().Be(-20);
         }
 
         [TestMethod]
@@ -46,8 +47,8 @@ namespace ProgrammingProblems.Tests
             sut.Swap(ref a, ref b);
 
             // Assert
-            Assert.AreEqual(0, a);
-            Assert.AreEqual(0, b);
+            a.Should().Be(0);
+            b.Should().Be(0);
         }
 
         [TestMethod]
@@ -61,8 +62,8 @@ namespace ProgrammingProblems.Tests
             sut.Swap(ref a, ref b);
 
             // Assert
-            Assert.AreEqual(33, a);
-            Assert.AreEqual(33, b);
+			a.Should().Be(33);
+			b.Should().Be(33);
         }
     }
 }
