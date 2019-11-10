@@ -6,19 +6,11 @@ using Xunit;
 
 namespace ProgrammingProblemsTests
 {
-	
 	public class FizBuzzTests
 	{
-		[Fact]
-		public void ReturnsFizBuzzWhen0Provided()
+		private static string FizBuzzTest(int number)
 		{
-			FizBuzzTest(0).Should().Be("FizBuzz");
-		}
-
-		[Fact]
-		public void ReturnsFizWhen3Provided()
-		{
-			FizBuzzTest(3).Should().Be("Fiz");
+			return new FizBuzz().Test(number);
 		}
 
 		[Fact]
@@ -28,9 +20,21 @@ namespace ProgrammingProblemsTests
 		}
 
 		[Fact]
+		public void ReturnsFizBuzzWhen0Provided()
+		{
+			FizBuzzTest(0).Should().Be("FizBuzz");
+		}
+
+		[Fact]
 		public void ReturnsFizBuzzWhen15Provided()
 		{
 			FizBuzzTest(15).Should().Be("FizBuzz");
+		}
+
+		[Fact]
+		public void ReturnsFizWhen3Provided()
+		{
+			FizBuzzTest(3).Should().Be("Fiz");
 		}
 
 		[Fact]
@@ -43,11 +47,6 @@ namespace ProgrammingProblemsTests
 			var expected = "1 2 Fiz 4 Buzz Fiz 7 8 Fiz Buzz 11 Fiz 13 14 FizBuzz 16 17 Fiz 19 Buzz ";
 			var actual = sb.ToString();
 			actual.Should().Be(expected);
-		}
-
-		private static string FizBuzzTest(int number)
-		{
-			return new FizBuzz().Test(number);
 		}
 	}
 }

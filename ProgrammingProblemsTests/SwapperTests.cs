@@ -11,7 +11,7 @@ namespace ProgrammingProblemsTests
 		}
 	}
 
-	public class SwapperUsingArithmeticOperationTests: SwapperTests
+	public class SwapperUsingArithmeticOperationTests : SwapperTests
 	{
 		public SwapperUsingArithmeticOperationTests() : base(new SwapperUsingArithmeticOperation())
 		{
@@ -20,11 +20,25 @@ namespace ProgrammingProblemsTests
 
 	public abstract class SwapperTests
 	{
-		private readonly ITwoNumberSwapper _sut;
-
 		protected SwapperTests(ITwoNumberSwapper sut)
 		{
 			_sut = sut;
+		}
+
+		private readonly ITwoNumberSwapper _sut;
+
+		[Fact]
+		public void SwapsNegativeValues()
+		{
+			// Arrange
+			int a = -20, b = -30;
+
+			// Act
+			_sut.Swap(ref a, ref b);
+
+			// Assert
+			a.Should().Be(-30);
+			b.Should().Be(-20);
 		}
 
 		[Fact]
@@ -42,17 +56,17 @@ namespace ProgrammingProblemsTests
 		}
 
 		[Fact]
-		public void SwapsNegativeValues()
+		public void SwapsSameNonZeroValues()
 		{
 			// Arrange
-			int a = -20, b = -30;
+			int a = 33, b = 33;
 
 			// Act
 			_sut.Swap(ref a, ref b);
 
 			// Assert
-			a.Should().Be(-30);
-			b.Should().Be(-20);
+			a.Should().Be(33);
+			b.Should().Be(33);
 		}
 
 		[Fact]
@@ -67,20 +81,6 @@ namespace ProgrammingProblemsTests
 			// Assert
 			a.Should().Be(0);
 			b.Should().Be(0);
-		}
-
-		[Fact]
-		public void SwapsSameNonZeroValues()
-		{
-			// Arrange
-			int a = 33, b = 33;
-
-			// Act
-			_sut.Swap(ref a, ref b);
-
-			// Assert
-			a.Should().Be(33);
-			b.Should().Be(33);
 		}
 	}
 }

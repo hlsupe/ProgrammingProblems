@@ -21,12 +21,13 @@ namespace ProgrammingProblemsTests
 
 	public abstract class FibonacciTests
 	{
-		private readonly IFibonacci _sut;
-
 		protected FibonacciTests(IFibonacci sut)
 		{
 			_sut = sut;
 		}
+
+		private readonly IFibonacci _sut;
+
 		private long FibonacciNumberAtIndex(int index)
 		{
 			return _sut.GetFibonacciNumberAtIndex(index);
@@ -70,7 +71,7 @@ namespace ProgrammingProblemsTests
 
 		[Fact]
 		public void ThrowsInvalidOperationFor0ThFib()
-		{	
+		{
 			Assert.Throws<InvalidOperationException>(() =>
 				FibonacciNumberAtIndex(0));
 		}
@@ -81,7 +82,5 @@ namespace ProgrammingProblemsTests
 			Assert.Throws<InvalidOperationException>(() =>
 				FibonacciNumberAtIndex(-1));
 		}
-
-		
 	}
 }
