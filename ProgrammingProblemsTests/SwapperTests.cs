@@ -1,67 +1,82 @@
 ﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProgrammingProblems;
+using Xunit;
 
 namespace ProgrammingProblemsTests
 {
-	//TODO Use Xunit pattern to eliminate duplication of code in SwapperUsingArithmeticOperationTests and SwapperUsingXorOperationTests 
-	[TestClass]
-	public class SwapperUsingArithmeticOperationTests
+	public class SwapperUsingXorOperationTests : SwapperTests
 	{
-		[TestMethod]
+		public SwapperUsingXorOperationTests() : base(new SwapperUsingXorOperation())
+		{
+		}
+	}
+
+	public class SwapperUsingArithmeticOperationTests: SwapperTests
+	{
+		public SwapperUsingArithmeticOperationTests() : base(new SwapperUsingArithmeticOperation())
+		{
+		}
+	}
+
+	public abstract class SwapperTests
+	{
+		private readonly ITwoNumberSwapper _sut;
+
+		protected SwapperTests(ITwoNumberSwapper sut)
+		{
+			_sut = sut;
+		}
+
+		[Fact]
 		public void SwapsPositiveValues()
 		{
 			// Arrange
 			int a = 20, b = 30;
 
 			// Act
-			ITwoNumberSwapper sut = new SwapperUsingArithmeticOperation();
-			sut.Swap(ref a, ref b);
+			_sut.Swap(ref a, ref b);
 
 			// Assert
 			a.Should().Be(30);
 			b.Should().Be(20);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void SwapsNegativeValues()
 		{
 			// Arrange
 			int a = -20, b = -30;
 
 			// Act
-			ITwoNumberSwapper sut = new SwapperUsingArithmeticOperation();
-			sut.Swap(ref a, ref b);
+			_sut.Swap(ref a, ref b);
 
 			// Assert
 			a.Should().Be(-30);
 			b.Should().Be(-20);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void SwapsZeros()
 		{
 			// Arrange
 			int a = 0, b = 0;
 
 			// Act
-			ITwoNumberSwapper sut = new SwapperUsingArithmeticOperation();
-			sut.Swap(ref a, ref b);
+			_sut.Swap(ref a, ref b);
 
 			// Assert
 			a.Should().Be(0);
 			b.Should().Be(0);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void SwapsSameNonZeroValues()
 		{
 			// Arrange
 			int a = 33, b = 33;
 
 			// Act
-			ITwoNumberSwapper sut = new SwapperUsingArithmeticOperation();
-			sut.Swap(ref a, ref b);
+			_sut.Swap(ref a, ref b);
 
 			// Assert
 			a.Should().Be(33);

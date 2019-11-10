@@ -1,39 +1,39 @@
 ﻿using System.Linq;
 using System.Text;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProgrammingProblems;
+using Xunit;
 
 namespace ProgrammingProblemsTests
 {
-	[TestClass]
+	
 	public class FizBuzzTests
 	{
-		[TestMethod]
+		[Fact]
 		public void ReturnsFizBuzzWhen0Provided()
 		{
 			FizBuzzTest(0).Should().Be("FizBuzz");
 		}
 
-		[TestMethod]
+		[Fact]
 		public void ReturnsFizWhen3Provided()
 		{
 			FizBuzzTest(3).Should().Be("Fiz");
 		}
 
-		[TestMethod]
+		[Fact]
 		public void ReturnsBuzzWhen5Provided()
 		{
 			FizBuzzTest(5).Should().Be("Buzz");
 		}
 
-		[TestMethod]
+		[Fact]
 		public void ReturnsFizBuzzWhen15Provided()
 		{
 			FizBuzzTest(15).Should().Be("FizBuzz");
 		}
 
-		[TestMethod]
+		[Fact]
 		public void Test1Thru20()
 		{
 			var sut = new FizBuzz();

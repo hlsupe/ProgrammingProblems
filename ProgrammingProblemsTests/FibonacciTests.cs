@@ -1,66 +1,87 @@
 ﻿using System;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProgrammingProblems;
+using Xunit;
 
 namespace ProgrammingProblemsTests
 {
-	[TestClass]
-	public class FibonacciUsingRecursiveSolutionTests
+	public class FibonacciUsingIterativeSolutionTests : FibonacciTests
 	{
-		[TestMethod]
+		public FibonacciUsingIterativeSolutionTests() : base(new FibonacciUsingIterativeSolution())
+		{
+		}
+	}
+
+	public class FibonacciUsingRecursiveSolutionTests : FibonacciTests
+	{
+		public FibonacciUsingRecursiveSolutionTests() : base(new FibonacciUsingRecursiveSolution())
+		{
+		}
+	}
+
+	public abstract class FibonacciTests
+	{
+		private readonly IFibonacci _sut;
+
+		protected FibonacciTests(IFibonacci sut)
+		{
+			_sut = sut;
+		}
+		private long FibonacciNumberAtIndex(int index)
+		{
+			return _sut.GetFibonacciNumberAtIndex(index);
+		}
+
+		[Fact]
 		public void Returns0For1StFib()
 		{
 			FibonacciNumberAtIndex(1).Should().Be(0);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void Returns1For2ndFib()
 		{
 			FibonacciNumberAtIndex(2).Should().Be(1);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void Returns1For3rdFib()
 		{
 			FibonacciNumberAtIndex(3).Should().Be(1);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void Returns2For4ThFib()
 		{
 			FibonacciNumberAtIndex(4).Should().Be(2);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void Returns3For5ThFib()
 		{
 			FibonacciNumberAtIndex(5).Should().Be(3);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void Returns5For6ThFib()
 		{
 			FibonacciNumberAtIndex(6).Should().Be(5);
 		}
 
-		[TestMethod]
+		[Fact]
 		public void ThrowsInvalidOperationFor0ThFib()
-		{
-			Assert.ThrowsException<InvalidOperationException>(() =>
+		{	
+			Assert.Throws<InvalidOperationException>(() =>
 				FibonacciNumberAtIndex(0));
 		}
 
-		[TestMethod]
+		[Fact]
 		public void ThrowsInvalidOperationForNegative1ThFib()
 		{
-			Assert.ThrowsException<InvalidOperationException>(() =>
+			Assert.Throws<InvalidOperationException>(() =>
 				FibonacciNumberAtIndex(-1));
 		}
 
-		private static long FibonacciNumberAtIndex(int index)
-		{
-			return new FibonacciUsingRecursiveSolution().GetFibonacciNumberAtIndex(index);
-		}
+		
 	}
 }
